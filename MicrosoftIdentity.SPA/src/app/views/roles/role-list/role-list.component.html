@@ -1,0 +1,99 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card mb-0">
+        <div class="card-header">
+          <strong>Setting Roles</strong>
+          <button type="button" (click)="openModalAdd(templateAdd)"  class="btn btn-sm btn-primary float-right"><i
+            class="fa fa-plus"></i> Add </button>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Name</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of roles;let i = index">
+                  <td>{{ i + 1}}</td>
+                  <td>{{ item.name }}</td>
+                  <td>
+                    <div class="custom-control custom-checkbox">
+                      <input  type="checkbox"
+                              disabled
+                              [(ngModel)]="item.status"
+                              id="{{item.id}}"
+                              class="custom-control-input">
+                      <label class="custom-control-label" for="{{item.id}}"></label>
+                  </div>
+                  </td>
+                  <td>
+                    <button class="btn btn-danger" (click)="delete(item.name)">Remove</button>
+                    <button class="btn btn-primary" (click)="openModalUpdate(templateUpdate, item)">Update</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #templateAdd>
+  <div class="modal-header">
+    <strong>Add Role</strong>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <label class="col-md-2 col-form-label" for="defect-no" > Name : </label>
+      <div class="col-md-6">
+          <input type="text" [(ngModel)] ="roleNameAdd"  name="user_Name" class="form-control"  
+           placeholder="Please enter role name.." required>
+      </div>
+      <label class="col-md-2 col-form-label" for="status"><strong>Status</strong></label>
+          <div class="col-md-1 custom-control custom-checkbox pt-2">
+              <input type="checkbox" [(ngModel)]="roleStatus" class="custom-control-input" id="check-location">
+              <label class="custom-control-label ml-3" for="check-location"></label>
+          </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="addRole()">Save</button>
+    <button type="button" class="btn btn-danger" (click)="modalRef.hide()">Cancle</button>
+  </div>
+</ng-template>
+<ng-template #templateUpdate>
+  <div class="modal-header">
+    <strong>Update Role</strong>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <label class="col-md-2 col-form-label" for="defect-no" > Name : </label>
+      <div class="col-md-6">
+          <input type="text" [(ngModel)] ="roleEditCurrent.name"  name="user_Name" class="form-control"  
+           placeholder="Please enter role name.." required>
+      </div>
+      <label class="col-md-2 col-form-label" for="status"><strong>Status</strong></label>
+          <div class="col-md-1 custom-control custom-checkbox pt-2">
+              <input type="checkbox" [(ngModel)]="roleEditCurrent.status" class="custom-control-input" id="check-location">
+              <label class="custom-control-label ml-3" for="check-location"></label>
+          </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="updateRole()">Save</button>
+    <button type="button" class="btn btn-danger" (click)="modalRef.hide()">Cancle</button>
+  </div>
+</ng-template>

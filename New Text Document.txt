@@ -1,0 +1,5 @@
+1. dotnet tool install --global dotnet-ef : Ban đầu chạy lệnh này
+2. dotnet ef migration add IdentityDBUser
+3. dotnet ef database update
+ + Cách custom model user
+ 

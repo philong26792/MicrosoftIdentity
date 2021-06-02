@@ -1,0 +1,62 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card mb-0">
+        <div class="card-header">
+          <strong>Setting Users</strong>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of users;let i = index">
+                  <td>{{ i + 1}}</td>
+                  <td>{{ item.userName }}</td>
+                  <td>{{ item.email }}</td>
+                  <td>
+                    <button class="btn btn-danger" (click)="remove(item.userName)">Remove</button>
+                    <button class="btn btn-primary" (click)="openModalRole(template, item.userName)">Set Role</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [(ngModel)]="pagination.currentPage"
+          [itemsPerPage]="pagination.itemsPerPage" (pageChanged)="pageChanged($event)" previousText="&lsaquo;"
+          nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" [maxSize]="5">
+        </pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #template>
+  <div class="modal-header">
+    <strong>Current Role: {{roleCurrent}}</strong>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <select name="roles" id="roles" [(ngModel)]="role" class="form-control">
+          <option *ngFor="let item of roles">{{item.name}}</option>
+        </select>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-success" (click)="updateRole()">Save</button>
+    <button type="button" class="btn btn-danger" (click)="modalRef.hide()">Cancle</button>
+  </div>
+</ng-template>
