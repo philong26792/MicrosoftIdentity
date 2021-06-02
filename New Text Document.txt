@@ -1,5 +1,5 @@
-1. dotnet tool install --global dotnet-ef : Ban đầu chạy lệnh này
-2. dotnet ef migration add IdentityDBUser
-3. dotnet ef database update
- + Cách custom model user
+1. dotnet tool install --global dotnet-ef : Ban đầu chạy lệnh này để cài đặt và sử dụng công cụ dòng lệnh EF Core
+2. dotnet ef migration add IdentityDBUser : Lệnh tạo ra một Migration
+3. dotnet ef database update: Tạo Database và update bảng vào database
+
  
