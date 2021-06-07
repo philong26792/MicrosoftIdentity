@@ -12,6 +12,7 @@ export class RegisterComponent {
   registerModel: RegisterModel = {
     userName : '',
     email: '',
+    department: '',
     password: '',
     confirmPassword: ''
   };

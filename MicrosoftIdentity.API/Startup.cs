@@ -40,7 +40,6 @@ namespace MicrosoftIdentity.API
             services.AddCors();
             services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
-           
             services.AddIdentity<ApplicationUser, AppRoles>().AddEntityFrameworkStores<DataContext>();
             services.AddAuthentication(x => {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -73,6 +72,8 @@ namespace MicrosoftIdentity.API
             services.AddScoped<ISettingRoleService, SettingRoleService>();
             services.AddScoped<IRolesUserService, RolesUserService>();
             
+           
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
@@ -97,6 +98,12 @@ namespace MicrosoftIdentity.API
                         }
                     });
             });
+            services.ConfigureApplicationCookie(option => {
+                // option.Cookie.HttpOnly = true;
+                option.LoginPath = "/Auth/Login";
+                option.ExpireTimeSpan = TimeSpan.FromHours(10);
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

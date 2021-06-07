@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MicrosoftIdentity.API._Services.Interfaces;
 using MicrosoftIdentity.API.Models.Identity;
@@ -7,6 +8,7 @@ using MicrosoftIdentity.API.Models.Identity;
 namespace MicrosoftIdentity.API.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class SettingRolesController : ControllerBase
     {

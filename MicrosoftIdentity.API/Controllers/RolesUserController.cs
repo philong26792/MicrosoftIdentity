@@ -8,7 +8,7 @@ using MicrosoftIdentity.API.Models.Identity;
 namespace MicrosoftIdentity.API.Controllers
 {
     [Route("api/[controller]")]
-    // [Authorize]
+    [Authorize]
     [ApiController]
     public class RolesUserController : ControllerBase
     {
